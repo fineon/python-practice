@@ -1,111 +1,58 @@
-import pymysql
+# ----------------------------
+# PRIMITIVE TYPES + VARIABLES
 
-# init empty html string
-htmlString=""
+firstname = "ian" #string
+lastname = "nguyen"
+myname = firstname + lastname #string concatenation
+print(myname)
 
-# create an HTML <head>
-def headhtml(htmlString):
-  htmlString+="<!DOCTYPE html>\n<html lang='en>\n<head>\n<title>Owners of Pets</title>\n</head>\n<body>"
-  return(htmlString)
+number = 50 #integers
+boolean = True #boolean. Needs to be capilaized apparently
+floatingNum = 0.5 #floating point number
 
-# create a HTML footer
-def foothtml(htmlString):
-    htmlString+= "</body>\n</html>"
-    return(htmlString)
+calc= 1+10-2*3/2 #basic calculations
+print('Python calculation =', calc)
 
-# query the db
-def ownerquery():
-    print('start')
-    db= pymysql.connect(host="localhost", user="root", db="slytherin")
-    cursor= db.cursor()
-    sql="SELECT * FROM owners;"
-    cursor.execute(sql)
-    owners= cursor.fetchall()
-    sql = "SELECT column_name from information_schema.COLUMNS WHERE TABLE_NAME='owners';"
-    cursor.execute(sql)
+modulo=8%2 #python's modulo calc. returns a number value that is evenly divided by 2
+print("modulo", modulo)
 
-# first print python statements
-# print('hello')
-# print(12.4)
+expo=8**3
+print("exponential", expo)
 
-# booleanHere=True
-# print(booleanHere)
+# ------------------------------------------------
+# FUNCTION
+def my_func(param): 
+    return param + 1
 
-# listHere=[1,2,3,4,5,6]
-# print(listHere)
+print("printing function return value", my_func(2))
 
-# this is a python comment. Connecting to mySQL localhost server
-############
+#-----------------------------
+# Statements
 
-# server = pymysql.connect(host="localhost", user="root")
-# cursor = server.cursor()
+#elif statement. can insert different avaluation cases in each statement. Not like ethe else statement which only eval the case in if statement. 
+myPet = 'dog'
 
-# sql  = "CREATE DATABASE IF NOT EXISTS slytherin;"
-# cursor.execute(sql)
+if myPet == 'fish':
+    print('nah')
+elif myPet == 'cat':
+    print(False)
+elif myPet == 'god':
+    print('maybe misspelling, maybe true')
+elif myPet == 'dog':
+    print('my pet is a dog',True)
 
-# sql = "USE slytherin;"
-# cursor.execute(sql)
+# --------------------------------
+# WHITE SPACE IN PYTHON
+y = 12 #this variable is in global scope
 
-# sql= '''CREATE TABLE IF NOT EXISTS owners(
-#     id integer NOT NULL AUTO_INCREMENT, 
-#     name varchar(30) NOT NULL, 
-#     gender varchar(7), 
-#     phone varchar(10), 
-#     PRIMARY KEY (id)  
-#     );
-# '''
-# cursor.execute(sql)
+def value(z = 10):
+    return z + y
+    print(z) # indentation after a statement, function will create a block scope.
 
-# sql="SHOW tables"
-# cursor.execute(sql)
-# print(cursor.fetchall() )
 
-# create another table in the above created db slytherin, called "pets"
-# server = pymysql.connect(host="localhost", user="root", db="slytherin")
-# cursor = server.cursor()
+# print(z) # this line is not in the function value() block scope. Will return undefined.
+print(value()) # returns 22.
 
-# sql = '''
-# CREATE TABLE IF NOT EXISTS pets(
-#     pet_id integer NOT NULL AUTO_INCREMENT, 
-#     owner_id integer, 
-#     name varchar(30), 
-#     gender varchar(7), 
-#     species varchar(20), 
-#     color varchar(10), 
-#     age integer, 
-#     PRIMARY KEY (pet_id), 
-#     FOREIGN KEY (owner_id) REFERENCES owners(id)
-#     );'''
-# cursor.execute(sql)
 
-# sql="SHOW tables"
-# cursor.execute(sql)
-# print(cursor.fetchall() )
 
-########### new SQL condition
 
-# def load_owners(cursor):
-#   owners_data = open("./owners.txt")
-#   for rowline in owners_data:
-#       row=rowline.split(",")
-#       sql="INSERT INTO owners(name, gender, phone) VALUES('{}','{}','{}');".format(row[0],row[1],row[2])
-#       cursor.execute(sql)
-#       cursor.execute("SELECT * FROM owners;")
-#       print(cursor.fetchall())
-
-# def load_pets(cursor):
-#   pets_data = open("./pets.txt")
-#   for rowline in pets_data:
-#       row=rowline.split(",")
-#       sql="INSERT INTO pets(owner_id, name,gender,species,color,age) VALUES( (SELECT id FROM owners WHERE name='{0}'), '{1}','{2}','{3}','{4}','{5}');".format(*row)
-#       cursor.execute(sql)
-#       cursor.execute("SELECT * FROM pets;")
-#       print(cursor.fetchall())
-
-# if __name__ == "__main__":
-#     db = pymysql.connect(host="localhost", user="root",db="slytherin")
-#     cursor=db.cursor()
-#     load_owners(cursor)
-#     load_pets(cursor)
-#     db.commit()
-#     db.close()
