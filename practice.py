@@ -35,19 +35,41 @@ expo=8**3
 print("exponential", expo)
 
 # ------------------------------------------------
-# FUNCTION
+# FUNCTION && CLASS
 def my_func(param): 
     return param + 1
+print("function invocation return the value of", my_func(2))
 
-print("printing function return the value of", my_func(2))
+class myClass: 
+    classVar = 'returned string value in a class'
+    def classFunc(self):
+        return True #invoke this method will return the boolean value True
+        #return self # return <__main__.myClass object at 0x7f6c2e9bfa90>
+
+    # class methods if inited by a variable should accept 1 parameter before invocation
+    def funcMethod(self):
+        print('class method invoked')
+    #Python's __init__() func can create a new object in a class, which can be referenced in other places
+    def __init__(self, obj): 
+        self.obj = obj 
+    def printObj(self):
+        #print(self.obj)
+        return self.obj
+initClass= myClass('a class object') #init class and passing an object value declared inside the class
+print(initClass.classVar)
+print(initClass.classFunc()) 
+print(initClass.funcMethod())
+print(initClass.printObj())
+# Python method that prints all available methods inside a class
+print(dir(myClass))
 
 #-----------------------------
-# Statements
+# STATEMENTS	
+
+myPet = 'dog'
+print(type(myPet)) #printing type of variable
 
 #elif statement. can insert different avaluation cases in each statement. Not like ethe else statement which only eval the case in if statement. 
-myPet = 'dog'
-print(type(myPet))
-
 if myPet == 'fish':
     print('nah')
 elif myPet == 'cat':
