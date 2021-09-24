@@ -1,16 +1,30 @@
 # ----------------------------
-# PRIMITIVE TYPES + VARIABLES
+# PRIMITIVE TYPES + VARIABLES DECLARATION
 
-firstname = "ian" #string
-lastname = "nguyen"
+firstname = 'ian' #string
+lastname = 'nguyen' #string
 myname = firstname + lastname #string concatenation
-print(myname)
+print('my name is', myname)
 
 number = 50 #integers
-boolean = True #boolean. Needs to be capilaized apparently
+boolean = True #boolean. Needs to be capitalized
 floatingNum = 0.5 #floating point number
-li = ['orange',True, False, 250] # Python list
 
+null = None #the null object in python
+print(null)
+
+# -------------------------------
+# BASIC PYTHON OBJECTS (DICTIONARY) AND ITERABLE DATA (LISTS)
+li = ['orange',True, False, 250] # Python list
+print('the value at index 0 is: ',li[0]) # list index starts at 0
+
+tup=(1,2,3) #tuple - iterable like list, but immutable
+print('a tuple list', tup)
+
+obj = {'key': 'value pair', 'number': 12, 'boolean': True, 'list': [True, False, 'cucumber'], 2: True,}
+print(obj)
+
+# EVALUATION AND ARITHMETIC OPERATORS
 calc= 1+10-2*3/2 #basic calculations
 print('Python calculation =', calc)
 
